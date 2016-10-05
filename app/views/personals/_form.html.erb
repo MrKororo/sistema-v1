@@ -1,0 +1,84 @@
+<%= form_for(@personal) do |f| %>
+  <% if @personal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@personal.errors.count, "error") %> prohibited this personal from being saved:</h2>
+
+      <ul>
+      <% @personal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :"Nombre" %><br>
+    <%= f.text_field :nombre_personal %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Apellido Paterno" %><br>
+    <%= f.text_field :apellidop_personal %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Apellido Materno" %><br>
+    <%= f.text_field :apellidom_personal %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Rut" %><br>
+    <%= f.text_field :rut_personal %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Afp a pertenecer" %><br>
+    <%= f.select :afp_personal, Personal::AFP_EXISTENTE %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Sistema de salud" %><br>
+    <%= f.select :sistema_salud, Personal::SISTEMA_SALUD %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Trabajador Activo" %><br>
+    <%= f.check_box :personal_activo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Fecha de contratacion" %><br>
+    <%= f.date_select :fecha_contratacion %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Tipo de contrato" %><br>
+    <%= f.select :tipo_contrato, Personal::TIPOS_CONTRATO %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Tipo de pago" %><br>
+    <%= f.select :tipo_pago, Personal::TIPO_PAGO %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Numero de cuenta" %><br>
+    <%= f.number_field :num_cuenta %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Categoria a la que pertenece" %><br>
+    <%= collection_select(:personal, :categorium_id, Categorium.all, :id, :categoria, {:prompt => 'Seleccione la categoria'}) %> 
+  </div>
+
+  <div class="field">
+    <%= f.label :"Centro de costos" %><br>
+    <%= collection_select(:personal, :centrocosto_id, Centrocosto.all, :id, :nombre_centro, {:prompt => 'Seleccione centro de costo'}) %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit ( f.object.new_record? ? "Crear" : "Actualizar"), class: "btn" %>
+    <%= f.submit "Limpiar", :type => "reset" %>
+  </div>
+
+<% end %>

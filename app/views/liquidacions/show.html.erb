@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Personal:</strong>
+  <%= @liquidacion.personal.nombre_apellido %>
+</p>
+<p>
+  <strong>Fecha emision:</strong>
+  <%= @liquidacion.fecha_emision.strftime("%m/%d/%Y") %>
+</p>
+
+<p>
+  <strong>Habere:</strong>
+  <%= @liquidacion.habere.sueldo_base %>
+</p>
+<p>
+  <strong>Asignacion:</strong>
+  <%= @liquidacion.asignacion.asignacion %>
+</p>
+<p>
+  <strong>Bonificacion:</strong>
+  <%= @liquidacion.bonificacion.bono %>
+</p>
+
+<p>
+  <strong>Descuento:</strong>
+  <%= @liquidacion.descuento %>
+</p>
+<p>
+  <strong>Descuento adicional:</strong>
+  <%= @liquidacion.descuento_adicional %>
+</p>
+
+
+<p><%= link_to "Liquidacion en pdf", liquidacion_path(@liquidacion, format: "pdf")%>
+</p>
+
+
+<%= link_to 'Editar', edit_liquidacion_path(@liquidacion) %> |
+<%= link_to 'Volver', liquidacions_path %>

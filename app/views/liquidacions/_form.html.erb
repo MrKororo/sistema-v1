@@ -1,0 +1,46 @@
+<%= form_for(@liquidacion) do |f| %>
+  <% if @liquidacion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@liquidacion.errors.count, "error") %> prohibited this liquidacion from being saved:</h2>
+
+      <ul>
+      <% @liquidacion.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :personal_id %><br>
+    <%= collection_select(:liquidacion, :personal_id, Personal.all, :id, :nombre_apellido, {:prompt => 'Seleccione trabajador'}) %> 
+  </div>
+  <div class="field">
+    <%= f.label :fecha_emision %><br>
+    <%= f.date_select :fecha_emision %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Sueldo base" %><br>
+    <%= f.text_field :habere_id %>
+  </div>
+  <div class="field">
+    <%= f.label :asignacion_id %><br>
+    <%= f.text_field :asignacion_id %>
+  </div>
+  <div class="field">
+    <%= f.label :bonificacion_id %><br>
+    <%= f.text_field :bonificacion_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :descuento_id %><br>
+    <%= f.text_field :descuento_id %>
+  </div>
+  <div class="field">
+    <%= f.label :descuento_adicional_id %><br>
+    <%= f.text_field :descuento_adicional_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit ( f.object.new_record? ? "Crear" : "Actualizar"), class: "btn" %>
+  </div>
+<% end %>
